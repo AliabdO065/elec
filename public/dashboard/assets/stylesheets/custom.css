@@ -1,0 +1,60 @@
+ .btn-danger {
+  color: #ffffff;
+  background-color: #f5a623;
+  border-color: #f5a623;
+}
+
+.btn-danger:hover {
+  color: #ffffff;
+  background-color: #f5a623;
+  border-color: #f5a623;
+}
+
+.btn-danger:focus, .btn-danger.focus {
+  color: #ffffff;
+  background-color: #f5a623;
+  border-color: #f5a623;
+  box-shadow: 0 0 0 1px #f5a623;
+}
+
+.btn-danger.disabled, .btn-danger:disabled {
+  color: #ffffff;
+  background-color: #f5a623;
+  border-color: #f5a623;
+}
+
+.btn-danger:not(:disabled):not(.disabled):active, .btn-danger:not(:disabled):not(.disabled).active,
+.show > .btn-danger.dropdown-toggle {
+  color: #ffffff;
+  background-color: #f5a623;
+  border-color: #f5a623;
+}
+
+.btn-danger:not(:disabled):not(.disabled):active:focus, .btn-danger:not(:disabled):not(.disabled).active:focus,
+.show > .btn-danger.dropdown-toggle:focus {
+  box-shadow: 0 0 0 1px #f5a623;
+}
+
+.swal2-popup {
+  background: #1f416a !important;  /* black background */
+  color: #fff !important;       /* white text for contrast */
+}
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
+      background-color: #f5a623 !important;
+      border-color: #f5a623 !important;
+      box-shadow: 0 0 0 1px rgba(255, 0, 0, 0.5)  !important;
+}
+
+.alert-danger {
+    font-weight: 900 !important;
+    color: #191927;
+    background-color: #1f416a !important;
+    border-color: #1f416a !important;
+    color: white !important;
+ }
+
+ hr{
+  background-color: #346cb0 !important;
+  opacity: 1 !important;
+  height: 6px !important;
+ }
