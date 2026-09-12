@@ -1,67 +1,112 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Elektriker Klostermann — Notdienst Landing Page
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A single-page marketing site for a 24/7 emergency electrician business in Cologne, Germany, built on Laravel 9. All content is editable from a custom admin dashboard — no code changes needed to update text, images, prices, reviews, or FAQs.
 
-## About Laravel
+## What this project is
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- A **one-page German-electrician landing site** (hero, trust stats, services, 3-step process, about, comparison table, reviews, FAQ, callback form, footer, sticky bottom bar).
+- A **content-managed backend**: every section above is backed by a database table and an admin screen, not hardcoded HTML.
+- **Trilingual**: German, English, and Arabic. Visitors can switch language; the site falls back gracefully if a language is disabled. Arabic renders right-to-left automatically.
+- A **lead-capture form**: the "Rückruf anfordern" (request a callback) form stores submissions in the dashboard under *Callback Leads* — no email/CRM integration required to start using it.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This is not the original template. The project started from a generic multi-page "Elsscuba" scuba-diving demo theme and was rebuilt into this focused single-page electrician site; the old multi-page routes (`/about`, `/services`, `/projects`, `/news`, `/contact`) still resolve as redirects to the homepage so no old bookmarked/indexed links break.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tech stack
 
-## Learning Laravel
+- **PHP 8.x / Laravel 9**, Blade templates, Eloquent ORM
+- **MySQL** database
+- **Bootstrap 5** (dashboard), custom CSS (public landing page)
+- **Vite** for asset bundling
+- Custom JSON-column based translation system (`app/Traits/HasTranslations.php`) — no third-party i18n package
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Requirements
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- PHP 8.0.2+
+- Composer
+- MySQL (or MariaDB)
+- Node.js + npm (only needed if you plan to rebuild/change frontend assets via Vite)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Getting started (local setup, e.g. with XAMPP)
 
-## Laravel Sponsors
+1. **Clone and install dependencies**
+   ```bash
+   git clone https://github.com/AliabdO065/elec.git
+   cd elec
+   composer install
+   npm install
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+2. **Environment file**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+   Edit `.env` and set your database credentials:
+   ```
+   DB_DATABASE=elec
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
 
-### Premium Partners
+3. **Set an admin password before seeding**
+   Add this line to `.env` (pick your own strong password):
+   ```
+   SEED_ADMIN_PASSWORD=choose-a-strong-password-here
+   ```
+   The seeder creates the admin account `admin@elektriker-klostermann.de` using this value. If it's left empty, no admin user is created and you won't be able to log in.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+4. **Create the database, then migrate and seed**
+   ```bash
+   php artisan migrate --seed
+   ```
+   This creates all tables and fills the landing page with placeholder content (stats, services, steps, comparison rows, sample reviews, FAQs) in all 3 languages, ready to be edited from the dashboard.
 
-## Contributing
+5. **Build frontend assets** (only required if you change CSS/JS sources under `resources/`)
+   ```bash
+   npm run dev     # for local development
+   npm run build   # for production
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. **Serve the app**
+   - Via XAMPP: point a vhost/alias at the project's `public/` folder, or
+   - Via the built-in server:
+     ```bash
+     php artisan serve
+     ```
 
-## Code of Conduct
+7. **Log in to the dashboard** at `/login` using `admin@elektriker-klostermann.de` and the password you set in step 3.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Using the dashboard
 
-## Security Vulnerabilities
+All content lives under **Admin → Landing Page** in the sidebar:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+| Section | Controls |
+|---|---|
+| **Languages** | Enable/disable German, English, Arabic for visitors. At least one language, and the default language, must always stay enabled. |
+| **Settings** | Logo, phone number, hero headline/subheadline/image, alert banner, owner name/photo, company story, trust points, footer company info, legal page links (Impressum/Datenschutz/AGB), and social media links (Facebook/Instagram/Twitter/YouTube — only filled-in links show in the footer). |
+| **Trust Stats** | The small stat badges near the top (e.g. "25+ years", icon + value + label). |
+| **Services** | The 3 service cards (title, description, icon, image). |
+| **3-Step Process** | The "how it works" steps. |
+| **Comparison Table** | Rows comparing "us" vs. "anonymous emergency providers". |
+| **Reviews** | Customer reviews (name, photo, star rating, date, text). Reviews can be flagged as an example ("Beispiel") until real reviews are collected. |
+| **FAQ** | Question/answer pairs shown in the FAQ accordion. |
+| **Callback Leads** | Read-only inbox of every callback request submitted through the site's form (name, phone, email, postal code, and what the issue was). |
 
-## License
+Every text field that appears on the public site is translatable: content forms accept German, English, and Arabic values, and the site displays whichever the visitor has selected (falling back to German if a translation is missing).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# net-Z
+The dashboard's own interface (menus, buttons, labels) has a separate language switcher next to the admin's account menu — it does **not** affect what visitors see, only how the dashboard itself is displayed to whoever is logged in.
+
+## Project structure notes
+
+- `app/Models/Landing*.php` — one model per content-managed section (`LandingSetting`, `LandingStat`, `LandingService`, `LandingStep`, `LandingComparison`, `LandingReview`, `LandingFaq`, `LandingLead`), plus `Language`.
+- `app/Http/Controllers/LandingController.php` — public site: renders the homepage, handles callback submissions, handles the visitor language switch.
+- `app/Http/Controllers/LandingDashboardController.php` — all admin CRUD for the sections above.
+- `app/Traits/HasTranslations.php` — makes a model field transparently read/write per-locale JSON (`{"de":"...","en":"...","ar":"..."}`) without changing how views access it (`$service->title` just works).
+- `app/Http/Middleware/SetLocale.php` / `SetAdminLocale.php` — separate locale resolution for visitors vs. logged-in admins.
+- `resources/views/fronted/landing/` — the public page, split into one partial per section (`partials/_hero.blade.php`, `_services.blade.php`, etc.).
+- `resources/views/dashboard/landing/` — the corresponding admin screens.
+- `lang/{de,en,ar}.json` and `lang/{de,ar}/{validation,auth,pagination,passwords}.php` — translation strings for the static site chrome and Laravel's built-in validation/auth messages.
+
+## Security note
+
+Never commit a real `.env` file. `SEED_ADMIN_PASSWORD` should only exist in your local/production `.env`, never in source control — the seeder reads it from the environment specifically so no password is ever hardcoded in the repository.
