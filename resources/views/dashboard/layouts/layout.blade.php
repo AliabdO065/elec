@@ -91,8 +91,8 @@
               <ul class="header-nav nav">
                 <!-- .nav-item -->
                 <!-- .nav-item -->
-                <a href="{{route('dashboard.contact.contact.allmessage')}}" class="nav-item">
-                  <a class="nav-link" href="{{route('dashboard.contact.contact.allmessage')}}">
+                <a href="{{route('dashboard.landing.leads')}}" class="nav-item">
+                  <a class="nav-link" href="{{route('dashboard.landing.leads')}}">
                     <span class="oi oi-envelope-open"></span></a> <!-- .dropdown-menu -->
                 </a>
 

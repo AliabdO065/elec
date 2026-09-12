@@ -1,10 +1,8 @@
 <?php
 
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LandingDashboardController;
-use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,9 +26,6 @@ Route::group(['as'=>'fronted.', 'middleware'=>['setlocale'] ], function () {
     Route::get('/onlyinsight', fn () => redirect()->route('fronted.index'))->name('onlyinsight');
     Route::get('/news/details/{i}', fn () => redirect()->route('fronted.index'))->name('newsDetails');
     Route::get('/contact', fn () => redirect()->route('fronted.index'))->name('contact');
-
-
-    Route::post('/news/comments', [NewsController::class,'comment'])->name('news.comment');
 
 });
 
@@ -98,12 +93,6 @@ Route::get('/lang/{code}', function (string $code) {
 
     Route::get('/landing/leads', [LandingDashboardController::class,'leads'])->name('landing.leads');
     Route::get('/landing/leads/delete/{id}', [LandingDashboardController::class,'deleteLead'])->name('landing.leads.delete');
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-// Contact messages (submitted via the legacy contact form, kept for admin viewing/archival)
-Route::get('/contact/allmessage', [ContactController::class,'allmessage'])->name('contact.contact.allmessage');
-Route::get('/contact/allmessage/delete/{id}', [ContactController::class,'delete'])->name('contact.contact.allmessage.delete');
 });
 
 

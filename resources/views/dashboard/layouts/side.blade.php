@@ -33,9 +33,6 @@
                     <li class="menu-item"><a href="{{ route('dashboard.landing.reviews') }}" class="menu-link"><span class="menu-icon oi oi-star"></span><span class="menu-text">{{ __('Reviews') }}</span></a></li>
                     <li class="menu-item"><a href="{{ route('dashboard.landing.faqs') }}" class="menu-link"><span class="menu-icon oi oi-question-mark"></span><span class="menu-text">{{ __('FAQ') }}</span></a></li>
                     <li class="menu-item"><a href="{{ route('dashboard.landing.leads') }}" class="menu-link"><span class="menu-icon oi oi-phone"></span><span class="menu-text">{{ __('Callback Leads') }}</span></a></li>
-                    {{-- <li class="menu-item"><a href="{{ route('dashboard.contact.contact.allmessage') }}" class="menu-link"><span class="menu-icon oi oi-envelope-open"></span><span class="menu-text">{{ __("Client's Message") }}</span></a></li> --}}
-
-
 
                     <hr style="border:0; height:4px; background:#333; margin:15px 0; border-radius:2px;">
 
