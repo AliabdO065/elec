@@ -1,0 +1,17 @@
+@extends('fronted.layouts.landing')
+
+@section('content')
+    @include('fronted.landing.partials._navbar')
+    @include('fronted.landing.partials._alert-banner')
+    @include('fronted.landing.partials._hero')
+    @include('fronted.landing.partials._stats')
+    @include('fronted.landing.partials._services')
+    @include('fronted.landing.partials._steps')
+    @include('fronted.landing.partials._about')
+    @include('fronted.landing.partials._comparison')
+    @include('fronted.landing.partials._reviews')
+    @include('fronted.landing.partials._faq')
+    @include('fronted.landing.partials._callback-form')
+    @include('fronted.landing.partials._footer')
+    @include('fronted.landing.partials._sticky-bar')
+@endsection

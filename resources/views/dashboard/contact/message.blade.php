@@ -8,10 +8,10 @@
                         <table class="table">
                             <thead>
                               <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Message</th>
-                                <th scope="col">Delete</th>
+                                <th scope="col">{{ __('Name') }}</th>
+                                <th scope="col">{{ __('Email') }}</th>
+                                <th scope="col">{{ __('Message') }}</th>
+                                <th scope="col">{{ __('Delete') }}</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -33,15 +33,15 @@
                                     <td>
                                         <a style="border-radius: 40%; font-size: 14px;" 
                                         href="{{route('dashboard.contact.contact.allmessage.delete', $i)}}" 
-                                        class="btn btn-danger delete-confirm">Delete</a>
+                                        class="btn btn-danger delete-confirm">{{ __('Delete') }}</a>
                                     </td>
                                 </tr>
-                                
-                            @endforeach  
+
+                            @endforeach
                             @else
-                            
+
                             <tr>
-                                <td colspan="5" >No Messages ...................</td>
+                                <td colspan="5" >{{ __('No Messages ...................') }}</td>
                             </tr>
 
                         @endif

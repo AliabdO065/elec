@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}" dir="ltr">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -95,7 +95,23 @@
                   <a class="nav-link" href="{{route('dashboard.contact.contact.allmessage')}}">
                     <span class="oi oi-envelope-open"></span></a> <!-- .dropdown-menu -->
                 </a>
-             
+
+                <!-- .nav-item -->
+                <li class="nav-item dropdown header-nav-dropdown">
+                  <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="oi oi-globe"></span></a> <!-- .dropdown-menu -->
+                  <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
+                    <div class="dropdown-arrow"></div>
+                    <div class="dropdown-sheets">
+                      @foreach(['de' => 'Deutsch', 'en' => 'English', 'ar' => 'العربية'] as $code => $label)
+                        <a class="dropdown-item @if(app()->getLocale() === $code) active @endif"
+                           href="{{ route('dashboard.setLocale', $code) }}">
+                          {{ $label }}
+                        </a>
+                      @endforeach
+                    </div>
+                  </div>
+                </li><!-- /.nav-item -->
+
                 <!-- .nav-item -->
                 <li class="nav-item dropdown header-nav-dropdown">
                   <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="oi oi-grid-three-up"></span></a> <!-- .dropdown-menu -->
@@ -107,23 +123,23 @@
 
 
                       <div class="dropdown-sheet-item">
-  <a href="{{route('dashboard.services')}}" class="tile-wrapper">
-    <span class="tile tile-lg bg-indigo"><i class="oi oi-layers"></i></span> 
+  <a href="{{route('dashboard.landing.services')}}" class="tile-wrapper">
+    <span class="tile tile-lg bg-indigo"><i class="oi oi-layers"></i></span>
     <span class="tile-peek">Services</span>
   </a>
 </div>
 
 <div class="dropdown-sheet-item">
-  <a href="{{route('dashboard.projects')}}" class="tile-wrapper">
-    <span class="tile tile-lg bg-teal"><i class="oi oi-fork"></i></span> 
-    <span class="tile-peek">Participants</span>
+  <a href="{{route('dashboard.landing.reviews')}}" class="tile-wrapper">
+    <span class="tile tile-lg bg-teal"><i class="oi oi-star"></i></span>
+    <span class="tile-peek">Reviews</span>
   </a>
 </div>
 
 <div class="dropdown-sheet-item">
-  <a href="{{route('dashboard.news')}}" class="tile-wrapper">
-    <span class="tile tile-lg bg-yellow"><i class="oi oi-document"></i></span> 
-    <span class="tile-peek">Highlights</span>
+  <a href="{{route('dashboard.landing.leads')}}" class="tile-wrapper">
+    <span class="tile tile-lg bg-yellow"><i class="oi oi-phone"></i></span>
+    <span class="tile-peek">Callback Leads</span>
   </a>
 </div>
 
@@ -141,7 +157,7 @@
                   <div class="dropdown-arrow d-lg-none" x-arrow=""></div>
                   <div class="dropdown-arrow ml-3 d-none d-lg-block"></div>
                   <h6 class="dropdown-header d-none d-md-block d-lg-none">{{Auth::user()->name}} </h6>
-                  <a class="dropdown-item" href="{{route('logout')}}"><span class="dropdown-icon oi oi-account-logout"></span> Logout</a>
+                  <a class="dropdown-item" href="{{route('logout')}}"><span class="dropdown-icon oi oi-account-logout"></span> {{ __('Logout') }}</a>
                 </div><!-- /.dropdown-menu -->
               </div><!-- /.btn-account -->
             </div><!-- /.top-bar-item -->

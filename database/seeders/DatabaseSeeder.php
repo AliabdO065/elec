@@ -17,16 +17,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        User::factory()->create([
-            'name' => 'Elsayed Morad',
-            'email' => 'contact@elsscuba.co.uk',
-            'password' =>Hash::make('elsMscuba@123'),
-        ]);
+        if (env('SEED_ADMIN_PASSWORD')) {
+            User::updateOrCreate(
+                ['email' => 'admin@elektriker-klostermann.de'],
+                ['name' => 'Admin', 'password' => Hash::make(env('SEED_ADMIN_PASSWORD'))]
+            );
+        }
 
-        // $this->call([
-        //     HomeSeeder::class,
-        // ]);
-    
+        $this->call([
+            LandingSeeder::class,
+        ]);
 
 
     }

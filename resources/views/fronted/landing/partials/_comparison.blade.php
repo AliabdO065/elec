@@ -1,0 +1,34 @@
+<section class="lk-section lk-section-alt" id="lk-comparison">
+    <div class="lk-container">
+        <div class="lk-section-head">
+            <span class="lk-eyebrow">{{ __('Der Unterschied') }}</span>
+            <h2 class="lk-h2">{{ __('Echter Meisterbetrieb oder Notdienst-Abzocke?') }}</h2>
+            <p>{{ __('Leider gibt es in der Branche schwarze Schafe. So erkennen Sie einen seriösen Betrieb.') }}</p>
+        </div>
+
+        <div class="lk-compare-wrap">
+            <table class="lk-compare">
+                <thead>
+                    <tr>
+                        <th>{{ __('Kriterium') }}</th>
+                        <th>{{ $settings->company_name ?? 'Elektriker Klostermann' }}</th>
+                        <th>{{ __('Anonyme Notdienst-Anbieter') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($comparisons as $row)
+                        <tr>
+                            <td>{{ $row->criterion }}</td>
+                            <td class="{{ $row->us_is_positive ? 'yes' : 'no' }}">
+                                <i class="fa-solid {{ $row->us_is_positive ? 'fa-circle-check' : 'fa-circle-xmark' }}"></i>{{ $row->us_value }}
+                            </td>
+                            <td class="{{ $row->them_is_positive ? 'yes' : 'no' }}">
+                                <i class="fa-solid {{ $row->them_is_positive ? 'fa-circle-check' : 'fa-circle-xmark' }}"></i>{{ $row->them_value }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

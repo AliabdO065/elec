@@ -10,10 +10,10 @@
       <header class="page-title-bar">
         <div class="d-flex flex-column flex-md-row">
           <p class="lead">
-            <span class="font-weight-bold">Hi, {{Auth::user()->name}}</span> 
+            <span class="font-weight-bold">{{ __('Hi, :name', ['name' => Auth::user()->name]) }}</span>
             <span class="d-block text-muted">
-              Here's what's up with your business today!" <br>
-              Let's catch up on what's happening with your business!
+              {{ __("Here's what's up with your business today!") }} <br>
+              {{ __("Let's catch up on what's happening with your business!") }}
             </span>
           </p>
           <div class="ml-auto"></div>
@@ -36,20 +36,20 @@
               <div class="metric-row metric-flush">
                 <div class="col ml-6 bord">
                   <!-- .metric -->
-                  <a href="{{route('dashboard.projects')}}" class="metric metric-bordered align-items-center">
-                    <h2 class="metric-label"> Participants </h2>
+                  <a href="{{route('dashboard.landing.services')}}" class="metric metric-bordered align-items-center">
+                    <h2 class="metric-label"> {{ __('Services') }} </h2>
                     <p class="metric-value h3">
-                      <sub><i class="oi oi-people"></i></sub> <span class="value">{{count($projects)}} </span>
+                      <sub><i class="oi oi-layers"></i></sub> <span class="value">{{$servicesCount}} </span>
                     </p>
                   </a> <!-- /.metric -->
                 </div><!-- /metric column -->
 
                 <div class="col ml-6 bord">
                   <!-- .metric -->
-                  <a href="{{route('dashboard.services')}}" class="metric metric-bordered align-items-center">
-                    <h2 class="metric-label"> Services </h2>
+                  <a href="{{route('dashboard.landing.reviews')}}" class="metric metric-bordered align-items-center">
+                    <h2 class="metric-label"> {{ __('Reviews') }} </h2>
                     <p class="metric-value h3">
-                      <sub><i class="oi oi-layers"></i></sub> <span class="value">{{count($services)}} </span>
+                      <sub><i class="oi oi-star"></i></sub> <span class="value">{{$reviewsCount}} </span>
                     </p>
                   </a> <!-- /.metric -->
                 </div><!-- /metric column -->
@@ -60,20 +60,20 @@
               <div class="metric-row metric-flush">
                 <div class="col ml-6 bord">
                   <!-- .metric -->
-                  <a href="{{route('dashboard.news')}}" class="metric metric-bordered align-items-center">
-                    <h2 class="metric-label"> Highlights </h2>
+                  <a href="{{route('dashboard.landing.faqs')}}" class="metric metric-bordered align-items-center">
+                    <h2 class="metric-label"> {{ __('FAQ') }} </h2>
                     <p class="metric-value h3">
-                      <sub><i class="oi oi-document"></i></sub> <span class="value">{{count($news)}} </span>
+                      <sub><i class="oi oi-document"></i></sub> <span class="value">{{$faqsCount}} </span>
                     </p>
                   </a> <!-- /.metric -->
                 </div><!-- /metric column -->
 
                 <div class="col ml-6 bord">
                   <!-- .metric -->
-                  <a href="{{route('dashboard.news.allcomments')}}" class="metric metric-bordered align-items-center">
-                    <h2 class="metric-label"> Comments </h2>
+                  <a href="{{route('dashboard.landing.leads')}}" class="metric metric-bordered align-items-center">
+                    <h2 class="metric-label"> {{ __('Callback Leads') }} </h2>
                     <p class="metric-value h3">
-                      <sub><i class="oi oi-chat"></i></sub> <span class="value">{{count($comments)}} </span>
+                      <sub><i class="oi oi-phone"></i></sub> <span class="value">{{$leadsCount}} </span>
                     </p>
                   </a> <!-- /.metric -->
                 </div><!-- /metric column -->

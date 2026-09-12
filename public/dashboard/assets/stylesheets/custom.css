@@ -58,3 +58,28 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
   opacity: 1 !important;
   height: 6px !important;
  }
+
+/* Bootstrap 5 dropped .form-inline entirely, so it was a no-op here — this
+   gives the label/file-input/image-preview rows their spacing back. */
+.form-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.form-inline label {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+/* "Sample content" tag (e.g. placeholder reviews) — a plain bg-warning
+   pill read as too harsh/gaudy on the dark theme. */
+.badge-sample {
+  background: rgba(245, 166, 35, 0.15);
+  color: #f5a623;
+  border: 1px solid rgba(245, 166, 35, 0.4);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: .02em;
+  padding: 0.35em 0.7em;
+}
